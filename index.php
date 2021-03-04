@@ -305,6 +305,14 @@
         </style>
     </head>
     <body>
+        <div class="container" style="background: linear-gradient(50deg, #50ff40, #02ffc0); width: 100%;">
+            <div class="d-flex justify-content-center">
+                <div class="text-center">
+                    <h3 class="text-danger display-4">Este é um protótipo do site!</h3><br>
+                    <p><b>Logo logo, o site original estará disponivel!</b></p>
+                </div>
+            </div>
+        </div>
         <!--HEADER-->
         <header>
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -810,6 +818,6 @@
         <br/>
         <br/>
         <br/>
-        <footer class="text-center text-white pb-1">Rosana Monteiro &copy; - Todos os direitos reservados - 2020 - Ultima atualização: 2/3/2021</footer>
+        <footer class="text-center text-white pb-1">Rosana Monteiro &copy; - Todos os direitos reservados - 2020 - Ultima atualização: 4/3/2021 - Feito por <b>Luca Antônio Calegaro</b></footer>
     </body>
 </html>
