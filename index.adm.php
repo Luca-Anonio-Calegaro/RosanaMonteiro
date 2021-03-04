@@ -278,7 +278,7 @@
         <!--FOTO-->
         <div class="div-img-fundo-home-inicial">
             <div class="container d-flex container-img-fundo-home-inicial">
-                <h3 class="display-4 h3-img-fundo-home-inicial align-self-end text-left"><b><b>Psicóloga Dra.Rosana</b></b>
+                <h3 class="display-4 h3-img-fundo-home-inicial align-self-end text-left"><b><b>Psicóloga Rosana Monteiro</b></b>
                     <br/><b class="display-4 b-img-fundo-home-inicial">Faça uma consulta apartir de <b>R$130,00</b></b>
                 </h3>
                 <div class="d-flex justify-content-around ml-auto" style="width: 30%; height: fit-content;">
