@@ -138,9 +138,11 @@
                 }            
             }
             @media (min-width: 768px) and (max-width: 991.98px){
-                
             }
             @media (min-width: 576px) and (max-width: 767.98px){
+                #caixa-comentario{
+                    width: 100% !important;
+                }
                 .div-img-fundo-home-inicial{
                     background-position-y: -10px;
                     height: 350px !important;
@@ -168,6 +170,9 @@
                 }
             }
             @media (max-width: 576px){
+                #caixa-comentario{
+                    width: 100% !important;
+                }
                 .div-img-fundo-home-inicial{
                     background-position-y: -10px;
                     height: 200px;
@@ -228,14 +233,6 @@
         </style>
     </head>
     <body>
-        <div class="container" style="background: linear-gradient(50deg, #50ff40, #02ffc0); width: 100%;">
-            <div class="d-flex justify-content-center">
-                <div class="text-center">
-                    <h3 class="text-danger display-4">Este é um protótipo do site!</h3><br>
-                    <p><b>Logo logo, o site original estará disponivel!</b></p>
-                </div>
-            </div>
-        </div>
         <!--HEADER-->
         <header>
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -340,7 +337,7 @@
         <section>
             <!--TABELA-DE-COMENTÁRIO-->
             <div class="container bg-light">
-                <h3 class="display-4 text-center h3-tabela-home">Novo sistema de comentário!</h3>
+                <h3 class="display-4 text-center h3-tabela-home">Novo sistema de comentários!</h3>
                 <p class="pb-4 text-center p-tabela-home">Se está com alguma dúvida, pergunte para nós! Faça o seu comentário agora!
                     <button class="btn btn-outline-info" id="button-aparecer-tabela" onclick="aparecerTabela()">Fazer comentário</button> 
                 </p>
@@ -633,43 +630,53 @@
                         ?>
                         <div class="d-flex">
                             <div class="row container">
-                                <div class="card mb-3 bg-light d-flex flex-column col-md-6">
+                                <div class="card mb-3 bg-light d-flex flex-column" id="caixa-comentario">
                                     <div class="d-flex justify-content-between" style="background: linear-gradient(50deg, #76ff37, #02ffc0) !important;">
                                         <div class="card-body">
+                                        <?
+                                            $ççol = 'texto_completo_hd_forech';
+                                            $ttol = 'texto_completo_forech';
+                                            $ççol_completo = $ççol . $chamado_dados[4];
+                                            $ttol_completo = $ttol . $chamado_dados[4];
+                                            $_SESSION[$ççol_completo] = $_SESSION["texto_hd" . $chamado_dados[4]];
+                                            $_SESSION[$ttol_completo] = $_SESSION["texto_hd_hd" . $chamado_dados[4]];
+                                        ?>
                                             <h5 class="card-title"><?=$chamado_dados[1]?></h5>
                                             <h6 class="card-subtitle mb-2 text-muted"><?=$chamado_dados[2]?></h6>
                                             <p class="card-text"><?=$chamado_dados[3]?></p>
                                             <p class="card-text">Post n°: <?=$chamado_dados[4]?></p>
-                                        <p class="card-text" style="bottom: 0 !important;"><?=$chamado_dados[5]?></p>
+                                            <p class="card-text" style="bottom: 0 !important;"><?=$chamado_dados[5]?></p>
                                     </div>
+                                    
+                                    <form style="max-width: 300px !important;" method="post" action="public/excluir_comentarios.php?num=<?=$_SESSION[$ççol_completo]?>&num_hd=<?=$_SESSION[$ttol_completo]?>" class="d-flex justify-conetnt-around">
+                                        <button style="background: linear-gradient(50deg, #ff4059, #6c02ff) !important; height: 100% !important;" type="submit" class="btn btn-dark btn-excluir" class="text-dark"><i class="fas fa-trash-alt fa-3x"></i> <!--<i class="fas fa-edit fa-3x"></i>--></button>
+                                    </form>
                                 </div>
                                 <?php
                                     $chamado_dados[5] = str_replace('Ps:  ', '', $chamado_dados[5]);
                                     $chamado_dados[5] = str_replace('Ps: Anônimo', 'Anônimo', $chamado_dados[5]);
                                 ?>
-                                <div class="col-md-4">
-                                    <?
-                                        $texto_placeholder = "Digite sua resposta para '$chamado_dados[5]'";
-                                        if($chamado_dados_em_2[2] != ''){
-                                            $texto_placeholder = "Edite sua resposta para '$chamado_dados[5]'";
-                                        }
-                                        $texto_placeholder = substr($texto_placeholder, 0, -1);
-                                    ?>
-                                    <?
-                                        $ççol = 'texto_completo_hd_forech';
-                                        $ttol = 'texto_completo_forech';
-                                        $ççol_completo = $ççol . $chamado_dados[4];
-                                        $ttol_completo = $ttol . $chamado_dados[4];
-                                        $_SESSION[$ççol_completo] = $_SESSION["texto_hd" . $chamado_dados[4]];
+                                <?
+                                    $texto_placeholder = "Digite sua resposta para '$chamado_dados[5]'";
+                                    if($chamado_dados_em_2[2] != ''){
+                                        $texto_placeholder = "Edite sua resposta para '$chamado_dados[5]'";
+                                    }
+                                    $texto_placeholder = substr($texto_placeholder, 0, -1);
+                                ?>
+                                <?
+                                    $ççol = 'texto_completo_hd_forech';
+                                    $ttol = 'texto_completo_forech';
+                                    $ççol_completo = $ççol . $chamado_dados[4];
+                                    $ttol_completo = $ttol . $chamado_dados[4];
+                                    $_SESSION[$ççol_completo] = $_SESSION["texto_hd" . $chamado_dados[4]];
 
-                                        $_SESSION[$ttol_completo] = $_SESSION["texto_hd_hd" . $chamado_dados[4]];
-                                    ?>
-                                    <form action="public/responder_comentario.php?num=<?=$_SESSION[$ççol_completo]?>&num_hd=<?=$_SESSION[$ttol_completo]?>" method="post">
-                                        <textarea required placeholder="<?=$texto_placeholder?>'" class="p-4" name="resposta" id="resposta" cols="30" rows="8" minlength="1" maxlength="180" style="min-height: 9.95rem !important; width: 100% !important; height: fit-content !important; max-height: 9.95rem !important;"></textarea>
-                                        <input style="background: linear-gradient(50deg, #ff4059, #6c02ff) !important;" type="submit" value="Responder" class="input-enviar btn btn-block">
-                                    </form>
-                                </div>
+                                    $_SESSION[$ttol_completo] = $_SESSION["texto_hd_hd" . $chamado_dados[4]];
+                                ?>
                             </div>
+                            <form class="container col-md-5" action="public/responder_comentario.php?num=<?=$_SESSION[$ççol_completo]?>&num_hd=<?=$_SESSION[$ttol_completo]?>" method="post">
+                                <textarea required placeholder="<?=$texto_placeholder?>'" class="p-4" name="resposta" id="resposta" cols="30" rows="8" minlength="1" maxlength="180" style="min-height: 9.95rem !important; width: 100% !important; height: fit-content !important; max-height: 9.95rem !important;"></textarea>
+                                <input style="background: linear-gradient(50deg, #ff4059, #6c02ff) !important;" type="submit" value="Responder" class="input-enviar btn btn-block">
+                            </form>
                         </div>
                         <? if($chamado_dados_em_2[2] != '') { ?>
                             <div class="d-flex justify-content-between">
@@ -700,14 +707,6 @@
                 <? } ?>
             </div>
         </section>
-        <section>
-            <div class="container bg-light p-4">
-                <h3 class="display-4">Avisos:</h3>
-                <hr/>
-                <h3 class="text-center">Atenção! Atualizações do site estão por vir! Fique atento!</h3><p class="text-center">Data de lançamento: 7/4/2021</p>
-            </div>
-        </section>
-        <br/>
         <br/>
         <br/>
         <br/>
