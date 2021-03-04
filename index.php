@@ -305,14 +305,6 @@
         </style>
     </head>
     <body>
-        <div class="container" style="background: linear-gradient(50deg, #50ff40, #02ffc0); width: 100%;">
-            <div class="d-flex justify-content-center">
-                <div class="text-center">
-                    <h3 class="text-danger display-4">Este é um protótipo do site!</h3><br>
-                    <p><b>Logo logo, o site original estará disponivel!</b></p>
-                </div>
-            </div>
-        </div>
         <!--HEADER-->
         <header>
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -404,7 +396,7 @@
         <section>
             <!--TABELA-DE-COMENTÁRIO-->
             <div class="container bg-light">
-                <h3 class="display-4 text-center h3-tabela-home">Novo sistema de comentário!</h3>
+                <h3 class="display-4 text-center h3-tabela-home">Novo sistema de comentários!</h3>
                 <p class="pb-4 text-center p-tabela-home">Se está com alguma dúvida, pergunte para nós! Faça o seu comentário agora!
                     <button class="btn btn-outline-info" id="button-aparecer-tabela" onclick="aparecerTabela()">Fazer comentário</button> 
                 </p>
@@ -803,15 +795,6 @@
                 ?>
             </div>
         </section>
-        <br>
-        <section>
-            <div class="container bg-light p-4">
-                <h3 class="display-4">Avisos:</h3>
-                <hr/>
-                <h3 class="text-center">Atenção! Atualizações do site estão por vir! Fique atento!</h3><p class="text-center">Data de lançamento: 7/4/2021</p>
-            </div>
-        </section>
-        <br/>
         <br/>
         <br/>
         <br/>
