@@ -204,14 +204,14 @@
 				fclose($arquivo_vpc);
 			}
 
-			if($email != '' || isset($email) == false){
+			if($email != '' && $_SESSION["id"] === ''){
 				//abrindo o arquivo
 				$linhas = file('dados.hd');
 				$linhas_max = count($linhas)-1;
 				$arquivo_login = fopen('../index.php', 'a');
 				fclose($arquivo_login);
 				$linhas_login = file('../index.php');
-					$linhas_login[13+$num+$linhas_max] = "		array('id' => '$email')," . PHP_EOL . PHP_EOL;
+					$linhas_login[12+$num+$linhas_max] = "		array('id' => '$email')," . PHP_EOL . PHP_EOL;
 					$arquivo_login = fopen('../index.php', 'w');
 					foreach($linhas_login as $conteudo){
 						fwrite($arquivo_login, $conteudo);
