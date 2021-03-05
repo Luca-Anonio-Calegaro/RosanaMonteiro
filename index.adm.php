@@ -599,116 +599,118 @@
                         }
                     }
                 </script>
-                <? if($chamado_dados_validador != 'default') { ?>
-                    <?php
-                        //chamados
-                        $chamados = array();
-                        $chamados_em_2 = array();
-
-                        //abrir o dados.hd
-                        $arquivo = fopen('public/dados.hd', 'r');
-
-                        //enquanto houver registros (linhas) a serem recuperados
-                        while(!feof($arquivo)) { //testa pelo fim de um arquivo
-                            //linhas
-                            $registro = fgets($arquivo);
-                            $chamados[] = $registro;
-                        }
-
-                        //fechar o arquivo aberto
-                        fclose($arquivo);
-                    ?>
-                    <? foreach($chamados as $chamado) { ?>
+                    <? if($chamado_dados_validador != 'default') { ?>
                         <?php
-                            $chamado_dados_em_2 = explode('♠', $chamado);
-                            if(count($chamado_dados_em_2) < 4) {
-                                continue;
+                            //chamados
+                            $chamados = array();
+                            $chamados_em_2 = array();
+
+                            //abrir o dados.hd
+                            $arquivo = fopen('public/dados.hd', 'r');
+
+                            //enquanto houver registros (linhas) a serem recuperados
+                            while(!feof($arquivo)) { //testa pelo fim de um arquivo
+                                //linhas
+                                $registro = fgets($arquivo);
+                                $chamados[] = $registro;
                             }
+
+                            //fechar o arquivo aberto
+                            fclose($arquivo);
                         ?>
-                        <?php
-                            $chamado_dados = explode('♣', $chamado);
-                            if(count($chamado_dados) < 4) {
-                                continue;
-                            }
-                        ?>
-                        <?php
-                            $chamado_dados[5] = str_replace('Ps:   ', 'Ps: Anônimo', $chamado_dados[5]);
-                        ?>
-                        <div class="d-flex">
-                            <div class="row container">
-                                <div class="card mb-3 bg-light d-flex flex-column" id="caixa-comentario">
-                                    <div class="d-flex justify-content-between" style="background: linear-gradient(50deg, #76ff37, #02ffc0) !important;">
-                                        <div class="card-body">
+                        <div style="max-height: 550px; min-height: 100px; height: min-content !important; overflow-y: scroll !important;">
+                            <? foreach($chamados as $chamado) { ?>
+                                <?php
+                                    $chamado_dados_em_2 = explode('♠', $chamado);
+                                    if(count($chamado_dados_em_2) < 4) {
+                                        continue;
+                                    }
+                                ?>
+                                <?php
+                                    $chamado_dados = explode('♣', $chamado);
+                                    if(count($chamado_dados) < 4) {
+                                        continue;
+                                    }
+                                ?>
+                                <?php
+                                    $chamado_dados[5] = str_replace('Ps:   ', 'Ps: Anônimo', $chamado_dados[5]);
+                                ?>
+                                <div class="d-flex">
+                                    <div class="row container">
+                                        <div class="card mb-3 bg-light d-flex flex-column" id="caixa-comentario">
+                                            <div class="d-flex justify-content-between" style="background: linear-gradient(50deg, #76ff37, #02ffc0) !important;">
+                                                <div class="card-body">
+                                                <?
+                                                    $ççol = 'texto_completo_hd_forech';
+                                                    $ttol = 'texto_completo_forech';
+                                                    $ççol_completo = $ççol . $chamado_dados[4];
+                                                    $ttol_completo = $ttol . $chamado_dados[4];
+                                                    $_SESSION[$ççol_completo] = $_SESSION["texto_hd" . $chamado_dados[4]];
+                                                    $_SESSION[$ttol_completo] = $_SESSION["texto_hd_hd" . $chamado_dados[4]];
+                                                ?>
+                                                    <h5 class="card-title"><?=$chamado_dados[1]?></h5>
+                                                    <h6 class="card-subtitle mb-2 text-muted"><?=$chamado_dados[2]?></h6>
+                                                    <p class="card-text"><?=$chamado_dados[3]?></p>
+                                                    <p class="card-text">Post n°: <?=$chamado_dados[4]?></p>
+                                                    <p class="card-text" style="bottom: 0 !important;"><?=$chamado_dados[5]?></p>
+                                            </div>
+                                            
+                                            <form style="max-width: 300px !important;" method="post" action="public/excluir_comentarios.php?num=<?=$_SESSION[$ççol_completo]?>&num_hd=<?=$_SESSION[$ttol_completo]?>" class="d-flex justify-conetnt-around">
+                                                <button style="background: linear-gradient(50deg, #ff4059, #6c02ff) !important; height: 100% !important;" type="submit" class="btn btn-dark btn-excluir" class="text-dark"><i class="fas fa-trash-alt fa-3x"></i> <!--<i class="fas fa-edit fa-3x"></i>--></button>
+                                            </form>
+                                        </div>
+                                        <?php
+                                            $chamado_dados[5] = str_replace('Ps:  ', '', $chamado_dados[5]);
+                                            $chamado_dados[5] = str_replace('Ps: Anônimo', 'Anônimo', $chamado_dados[5]);
+                                        ?>
+                                        <?
+                                            $texto_placeholder = "Digite sua resposta para '$chamado_dados[5]'";
+                                            if($chamado_dados_em_2[2] != ''){
+                                                $texto_placeholder = "Edite sua resposta para '$chamado_dados[5]'";
+                                            }
+                                            $texto_placeholder = substr($texto_placeholder, 0, -1);
+                                        ?>
                                         <?
                                             $ççol = 'texto_completo_hd_forech';
                                             $ttol = 'texto_completo_forech';
                                             $ççol_completo = $ççol . $chamado_dados[4];
                                             $ttol_completo = $ttol . $chamado_dados[4];
                                             $_SESSION[$ççol_completo] = $_SESSION["texto_hd" . $chamado_dados[4]];
+
                                             $_SESSION[$ttol_completo] = $_SESSION["texto_hd_hd" . $chamado_dados[4]];
                                         ?>
-                                            <h5 class="card-title"><?=$chamado_dados[1]?></h5>
-                                            <h6 class="card-subtitle mb-2 text-muted"><?=$chamado_dados[2]?></h6>
-                                            <p class="card-text"><?=$chamado_dados[3]?></p>
-                                            <p class="card-text">Post n°: <?=$chamado_dados[4]?></p>
-                                            <p class="card-text" style="bottom: 0 !important;"><?=$chamado_dados[5]?></p>
                                     </div>
-                                    
-                                    <form style="max-width: 300px !important;" method="post" action="public/excluir_comentarios.php?num=<?=$_SESSION[$ççol_completo]?>&num_hd=<?=$_SESSION[$ttol_completo]?>" class="d-flex justify-conetnt-around">
-                                        <button style="background: linear-gradient(50deg, #ff4059, #6c02ff) !important; height: 100% !important;" type="submit" class="btn btn-dark btn-excluir" class="text-dark"><i class="fas fa-trash-alt fa-3x"></i> <!--<i class="fas fa-edit fa-3x"></i>--></button>
+                                    <form class="container col-md-5" action="public/responder_comentario.php?num=<?=$_SESSION[$ççol_completo]?>&num_hd=<?=$_SESSION[$ttol_completo]?>" method="post">
+                                        <textarea required placeholder="<?=$texto_placeholder?>'" class="p-4" name="resposta" id="resposta" cols="30" rows="8" minlength="1" maxlength="180" style="min-height: 9.95rem !important; width: 100% !important; height: fit-content !important; max-height: 9.95rem !important;"></textarea>
+                                        <input style="background: linear-gradient(50deg, #ff4059, #6c02ff) !important;" type="submit" value="Responder" class="input-enviar btn btn-block">
                                     </form>
                                 </div>
-                                <?php
-                                    $chamado_dados[5] = str_replace('Ps:  ', '', $chamado_dados[5]);
-                                    $chamado_dados[5] = str_replace('Ps: Anônimo', 'Anônimo', $chamado_dados[5]);
-                                ?>
-                                <?
-                                    $texto_placeholder = "Digite sua resposta para '$chamado_dados[5]'";
-                                    if($chamado_dados_em_2[2] != ''){
-                                        $texto_placeholder = "Edite sua resposta para '$chamado_dados[5]'";
-                                    }
-                                    $texto_placeholder = substr($texto_placeholder, 0, -1);
-                                ?>
-                                <?
-                                    $ççol = 'texto_completo_hd_forech';
-                                    $ttol = 'texto_completo_forech';
-                                    $ççol_completo = $ççol . $chamado_dados[4];
-                                    $ttol_completo = $ttol . $chamado_dados[4];
-                                    $_SESSION[$ççol_completo] = $_SESSION["texto_hd" . $chamado_dados[4]];
-
-                                    $_SESSION[$ttol_completo] = $_SESSION["texto_hd_hd" . $chamado_dados[4]];
-                                ?>
-                            </div>
-                            <form class="container col-md-5" action="public/responder_comentario.php?num=<?=$_SESSION[$ççol_completo]?>&num_hd=<?=$_SESSION[$ttol_completo]?>" method="post">
-                                <textarea required placeholder="<?=$texto_placeholder?>'" class="p-4" name="resposta" id="resposta" cols="30" rows="8" minlength="1" maxlength="180" style="min-height: 9.95rem !important; width: 100% !important; height: fit-content !important; max-height: 9.95rem !important;"></textarea>
-                                <input style="background: linear-gradient(50deg, #ff4059, #6c02ff) !important;" type="submit" value="Responder" class="input-enviar btn btn-block">
-                            </form>
-                        </div>
-                        <? if($chamado_dados_em_2[2] != '') { ?>
-                            <div class="d-flex justify-content-between">
-                                <div class="card mb-3 d-flex pl-3" style="background: linear-gradient(50deg, #ff4059, #6c02ff) !important; border: #ff4059 2px solid; margin-left: 7rem;">
-                                    <div class="row">
-                                        <div class="card-body d-flex flex-column">
-                                            <!--USER-->
-                                            <h5 class="card-title"><?=$chamado_dados[1]?></h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Assunto: Resposta</h6>
-                                            <!--RESPOSTA-->
-                                            <p class="card-text"><?=$chamado_dados_em_2[2]?></p>
+                                <? if($chamado_dados_em_2[2] != '') { ?>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="card mb-3 d-flex pl-3" style="background: linear-gradient(50deg, #ff4059, #6c02ff) !important; border: #ff4059 2px solid; margin-left: 7rem;">
+                                            <div class="row">
+                                                <div class="card-body d-flex flex-column">
+                                                    <!--USER-->
+                                                    <h5 class="card-title"><?=$chamado_dados[1]?></h5>
+                                                    <h6 class="card-subtitle mb-2 text-muted">Assunto: Resposta</h6>
+                                                    <!--RESPOSTA-->
+                                                    <p class="card-text"><?=$chamado_dados_em_2[2]?></p>
+                                                </div>
+                                                <?
+                                                    $_SESSION['resposta_id'] = $_SESSION["resposta_hd" . $chamado_dados[4]];
+                                                ?>
+                                                <form style="max-width: 300px !important;" method="post" action="public/excluir_respostas.php?res=<?=$_SESSION['resposta_id']?>&num=<?=$_SESSION[$ççol_completo]?>" class="d-flex flex-column alig-items-center p-5">
+                                                    <button style="background: linear-gradient(50deg, #ff4059, #6c02ff) !important;" type="submit" class="btn btn-dark" ><i class="fas fa-trash-alt fa-3x"></i></button>
+                                                </form>
+                                            </div>
                                         </div>
-                                        <?
-                                            $_SESSION['resposta_id'] = $_SESSION["resposta_hd" . $chamado_dados[4]];
-                                        ?>
-                                        <form style="max-width: 300px !important;" method="post" action="public/excluir_respostas.php?res=<?=$_SESSION['resposta_id']?>&num=<?=$_SESSION[$ççol_completo]?>" class="d-flex flex-column alig-items-center p-5">
-                                            <button style="background: linear-gradient(50deg, #ff4059, #6c02ff) !important;" type="submit" class="btn btn-dark" ><i class="fas fa-trash-alt fa-3x"></i></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>        
-                        <? } ?>
-                    <? } ?>
+                                    </div>        
+                                <? } ?>
+                            <? } ?>
+                        </div>
                 <? } else {?>
                     <div class="d-flex justify-content-center">
-                        <h5 class="card-title text-success">Nenhum comentário registrado. Seja o primeiro a comentar!</p>
+                        <h5 class="card-title text-success">Nenhum comentário registrado!</p>
                     </div>
                 <? } ?>
             </div>
