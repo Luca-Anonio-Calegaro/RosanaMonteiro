@@ -56,8 +56,8 @@
                             <a style="min-height: 40px !important;" onmouseover="aparecerPQ()" onmouseout="aparecerPQ()" type="button" class="btn btn-warning btn-lg btn-a">Para que este contrato? <i class="fas fa-question-circle"></i></a>
                             <div class="hide d-flex align-items-center" id="caixa-btn-a"><i class="fas fa-caret-left fa-lg ml-4 text-warning"></i><div style="border-radius: 10px !important;" class="bg-warning pt-2 pr-5 pl-5"><p>Este contrato foi feito para melhor cuidado do site.</p></div></div>
                         </div>
-                        <div class="d-flex align-items-center">
-                            <a style="min-height: 40px !important;" onmouseover="aparecerPQ2()" onmouseout="aparecerPQ2()" type="button" class="mt-3 btn btn-warning btn-lg btn-a">Para que a escolha de preços? <i class="fas fa-question-circle"></i></a>
+                        <div class="d-flex align-items-center mt-3">
+                            <a style="min-height: 40px !important;" onmouseover="aparecerPQ2()" onmouseout="aparecerPQ2()" type="button" class="btn btn-warning btn-lg btn-a">Para que a escolha de preços? <i class="fas fa-question-circle"></i></a>
                             <div class="hide d-flex align-items-center" id="caixa-btn-a-2"><i class="fas fa-caret-left fa-lg ml-4 text-warning"></i><div style="border-radius: 10px !important;" class="bg-warning pt-2 pr-5 pl-5"><p>Para darmos o melhor conforto ao nosso cliente.</p></div></div>
                         </div>
                     </ul>
