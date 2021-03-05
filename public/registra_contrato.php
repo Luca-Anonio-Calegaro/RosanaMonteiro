@@ -24,8 +24,6 @@
         <li><p>Afirmou que irá efetuar o pagamento de <b>mensalidade</b> por <b>pix</b>.</p></li>
 
         <li><p>Afirmou que A família de <b>Luca Antônio Calegaro</b> não terá nenhuma reponsabilidade com o site, caso <b>Luca Antônio Calegaro</b> falte em sua programação de trabalho com <b>Rosana Monteiro</b>.</p></li>
-
-        <li><p>Caso <b>Luca Antônio Calegaro</b> falte em sua programação de trabalho com <b>Rosana Monteiro</b>, você afirma que isso não afetará no pagemnto.</p></li>
     </ul>");
     fclose($arquivo_contrato);
     //abrindo o arquivo
@@ -42,8 +40,6 @@
             <li><p>Afirmou que irá efetuar o pagamento de <b>mensalidade</b> por <b>pix</b>.</p></li>
     
             <li><p>Afirmou que A família de <b>Luca Antônio Calegaro</b> não terá nenhuma reponsabilidade com o site, caso <b>Luca Antônio Calegaro</b> falte em sua programação de trabalho com <b>Rosana Monteiro</b>.</p></li>
-    
-            <li><p>Caso <b>Luca Antônio Calegaro</b> falte em sua programação de trabalho com <b>Rosana Monteiro</b>, você afirma que isso não afetará no pagemnto.</p></li>
         </ul>" . PHP_EOL . '<a type="button" class="btn btn-dark btn-lg btn-block mt-3" href="index.adm.php">Voltar</a>' . PHP_EOL;
         $arquivo = fopen('../Contrato.php', 'w');
         foreach($linhas as $conteudo){
