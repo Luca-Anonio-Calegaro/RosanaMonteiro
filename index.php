@@ -1,7 +1,6 @@
 <?php
 
 	session_start();
-
 	//variavel que verifica se a autenticacao foi realizada
 	$usuario_autenticado = false;
 	$usuario_id = null;
@@ -11,7 +10,6 @@
 	//usuarios do sistema
 	$usuarios_app = array(
 		array('id' => ''),
-		array('id' => 'teste@gmail.com'),
 
 	);
 
@@ -722,78 +720,75 @@
                         //fechar o arquivo aberto
                         fclose($arquivo);
                     ?>
-                    <? foreach($chamados as $chamado) { ?>
-                        <?php
-                            $chamado_dados_em_2 = explode('♠', $chamado);
-                            if(count($chamado_dados_em_2) < 4) {
-                                continue;
-                            }
-                        ?>
-                        <?php
-                            $chamado_dados = explode('♣', $chamado);
-                            if(count($chamado_dados) < 4) {
-                                continue;
-                            }
-                        ?>
-                        <?php
-                            $chamado_dados[5] = str_replace('Ps:   ', 'Ps: Anônimo', $chamado_dados[5]);
-                        ?>
-                        <? $linhas = file("public/dados.hd");?>
-                        <? if($chamado_dados[1] != '') { ?>
-                            <div class="card mb-3 bg-light">
-                                <div class="d-flex">
-                                    <div class="d-flex justify-content-between" style="background: linear-gradient(50deg, #76ff37, #02ffc0) !important; width: 100% !important;">
-                                        <div class="card-body">
-                                        <?
-                                            $ççol = 'texto_completo_hd_forech';
-                                            $ttol = 'texto_completo_forech';
-                                            $ççol_completo = $ççol . $chamado_dados[4];
-                                            $ttol_completo = $ttol . $chamado_dados[4];
-                                            $_SESSION[$ççol_completo] = $_SESSION["texto_hd" . $chamado_dados[4]];
-                                            $_SESSION[$ttol_completo] = $_SESSION["texto_hd_hd" . $chamado_dados[4]];
-                                        ?>
-                                            <h5 class="card-title"><?=$chamado_dados[1]?></h5>
-                                            <h6 class="card-subtitle mb-2 text-muted"><?=$chamado_dados[2]?></h6>
-                                            <p class="card-text"><?=$chamado_dados[3]?></p>
-                                            <p class="card-text" style="bottom: 0 !important;"><?=$chamado_dados[5]?></p>
+                    <div style="max-height: 550px; min-height: 100px; height: min-content !important; overflow-y: scroll !important;">
+                        <? foreach($chamados as $chamado) { ?>
+                            <?php
+                                $chamado_dados_em_2 = explode('♠', $chamado);
+                                if(count($chamado_dados_em_2) < 4) {
+                                    continue;
+                                }
+                            ?>
+                            <?php
+                                $chamado_dados = explode('♣', $chamado);
+                                if(count($chamado_dados) < 4) {
+                                    continue;
+                                }
+                            ?>
+                            <?php
+                                $chamado_dados[5] = str_replace('Ps:   ', 'Ps: Anônimo', $chamado_dados[5]);
+                            ?>
+                            <? $linhas = file("public/dados.hd");?>
+                            <? if($chamado_dados[1] != '') { ?>
+                                <div class="card mb-3 bg-light">
+                                    <div class="d-flex">
+                                        <div class="d-flex justify-content-between" style="background: linear-gradient(50deg, #76ff37, #02ffc0) !important; width: 100% !important;">
+                                            <div class="card-body">
+                                            <?
+                                                $ççol = 'texto_completo_hd_forech';
+                                                $ttol = 'texto_completo_forech';
+                                                $ççol_completo = $ççol . $chamado_dados[4];
+                                                $ttol_completo = $ttol . $chamado_dados[4];
+                                                $_SESSION[$ççol_completo] = $_SESSION["texto_hd" . $chamado_dados[4]];
+                                                $_SESSION[$ttol_completo] = $_SESSION["texto_hd_hd" . $chamado_dados[4]];
+                                            ?>
+                                                <h5 class="card-title"><?=$chamado_dados[1]?></h5>
+                                                <h6 class="card-subtitle mb-2 text-muted"><?=$chamado_dados[2]?></h6>
+                                                <p class="card-text"><?=$chamado_dados[3]?></p>
+                                                <p class="card-text" style="bottom: 0 !important;"><?=$chamado_dados[5]?></p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <? if($_SESSION["id"] == $chamado_dados[6]) { ?>
-                                        <form style="max-width: 300px !important;" method="post" action="public/excluir_comentarios.php?num=<?=$_SESSION[$ççol_completo]?>&num_hd=<?=$_SESSION[$ttol_completo]?>" class="d-flex justify-conetnt-around">
-                                            <button style="background: linear-gradient(50deg, #ff4059, #6c02ff) !important; height: 100% !important;" type="submit" class="btn btn-dark btn-excluir" class="text-dark"><i class="fas fa-trash-alt fa-3x"></i> <!--<i class="fas fa-edit fa-3x"></i>--></button>
-                                        </form>
-                                    <? } ?>
-                                </div>  
-                            </div>
-                        <? } ?>
-                        <?php
-                            $chamado_dados[5] = str_replace('Ps:  ', '', $chamado_dados[5]);
-                        ?>
-                        <? if($chamado_dados_em_2[2] != '') { ?>
-                            <div class="d-flex justify-content-between">
-                                <div class="card mb-3 d-flex pl-3" style="background: linear-gradient(50deg, #ff4059, #6c02ff) !important; border: #ff4059 2px solid; margin-left: 7rem;">
-                                    <div class="row">
-                                        <div class="card-body d-flex flex-column">
-                                            <!--USER-->
-                                            <h5 class="card-title">Rosana Monteiro</h5>
-                                            <!--RESPOSTA-->
-                                            <p class="card-text"><?=$chamado_dados_em_2[2]?></p>
-                                        </div>
-                                    </div>
+                                        <? if($_SESSION["id"] == $chamado_dados[6]) { ?>
+                                            <form style="max-width: 300px !important;" method="post" action="public/excluir_comentarios.php?num=<?=$_SESSION[$ççol_completo]?>&num_hd=<?=$_SESSION[$ttol_completo]?>" class="d-flex justify-conetnt-around">
+                                                <button style="background: linear-gradient(50deg, #ff4059, #6c02ff) !important; height: 100% !important;" type="submit" class="btn btn-dark btn-excluir" class="text-dark"><i class="fas fa-trash-alt fa-3x"></i> <!--<i class="fas fa-edit fa-3x"></i>--></button>
+                                            </form>
+                                        <? } ?>
+                                    </div>  
                                 </div>
-                            </div>        
+                            <? } ?>
+                            <?php
+                                $chamado_dados[5] = str_replace('Ps:  ', '', $chamado_dados[5]);
+                            ?>
+                            <? if($chamado_dados_em_2[2] != '') { ?>
+                                <div class="d-flex justify-content-between">
+                                    <div class="card mb-3 d-flex pl-3" style="background: linear-gradient(50deg, #ff4059, #6c02ff) !important; border: #ff4059 2px solid; margin-left: 7rem;">
+                                        <div class="row">
+                                            <div class="card-body d-flex flex-column">
+                                                <!--USER-->
+                                                <h5 class="card-title">Rosana Monteiro</h5>
+                                                <!--RESPOSTA-->
+                                                <p class="card-text"><?=$chamado_dados_em_2[2]?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>        
+                            <? } ?>
                         <? } ?>
-                    <? } ?>
+                    </div>
                 <? } else {?>
                     <div class="d-flex justify-content-center">
                         <h5 class="card-title text-success">Nenhum comentário registrado. Seja o primeiro a comentar!</p>
                     </div>
                 <? } ?>
-                <?php
-                    if($chamado_dados[6] != ''){
-                        echo "<script>window.localStorage.setItem('email (importante)', '$chamado_dados[6]')</script>";
-                    }
-                ?>
             </div>
         </section>
         <br/>
