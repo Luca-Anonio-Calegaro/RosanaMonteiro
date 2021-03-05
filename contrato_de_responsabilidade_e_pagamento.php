@@ -37,12 +37,7 @@
                     <h3>Contrato de responsabilidade e pagamento:</h3>
                     <p>Neste termo tem as seguintes condições:</p><br>
                     <ul>
-                        <li><p>Você afirma a divisão da responsabilidade do site com <b>Luca Antônio Calegaro</b>. 
-                        Ou seja, <b>Luca Antônio Calegaro</b> terá a responsabilidade de estar à sua disposição, com relação ao site.</p></li>
-
                         <li><p>A família de <b>Luca Antônio Calegaro</b> não terá nenhuma reponsabilidade com o site, caso <b>Luca Antônio Calegaro</b> falte em sua programação de trabalho com <b>Rosana Monteiro</b>.</p></li>
-                        
-                        <li><p>Caso <b>Luca Antônio Calegaro</b> falte em sua programação de trabalho com <b>Rosana Monteiro</b>, você afirma que isso não mudará no pagemnto.</p></li>
                     </ul>
                     <p>Pagamento de entrada:</p><br>
                     <ul style="list-style: none !important;">
@@ -61,9 +56,13 @@
                             <a style="min-height: 40px !important;" onmouseover="aparecerPQ()" onmouseout="aparecerPQ()" type="button" class="btn btn-warning btn-lg btn-a">Para que este contrato? <i class="fas fa-question-circle"></i></a>
                             <div class="hide d-flex align-items-center" id="caixa-btn-a"><i class="fas fa-caret-left fa-lg ml-4 text-warning"></i><div style="border-radius: 10px !important;" class="bg-warning pt-2 pr-5 pl-5"><p>Este contrato foi feito para melhor cuidado do site.</p></div></div>
                         </div>
+                        <div class="d-flex align-items-center">
+                            <a style="min-height: 40px !important;" onmouseover="aparecerPQ2()" onmouseout="aparecerPQ2()" type="button" class="btn btn-warning btn-lg btn-a">Para que este contrato? <i class="fas fa-question-circle"></i></a>
+                            <div class="hide d-flex align-items-center" id="caixa-btn-a-2"><i class="fas fa-caret-left fa-lg ml-4 text-warning"></i><div style="border-radius: 10px !important;" class="bg-warning pt-2 pr-5 pl-5"><p>Este contrato foi feito para melhor cuidado do site.</p></div></div>
+                        </div>
                     </ul>
                     <input type="submit" class="btn btn-primary btn-lg btn-block mt-5" value="Assinar">
-                    <a id="btn-a-a" type="button" class="btn btn-dark btn-lg btn-block mt-3" href="index.adm.php">Voltar</a>
+                    <a id="btn-a-a-2" type="button" class="btn btn-dark btn-lg btn-block mt-3" href="index.adm.php">Voltar</a>
                 </form>
             </div>
         </div>
@@ -87,6 +86,18 @@
                 }else{
                     CaixabtnA.classList.add("hide")
                     aparecerPorQue = true
+                }
+            }
+            let btnA2 = document.getElementById("btn-a-a-2")
+            let CaixabtnA2 = document.getElementById("caixa-btn-a-2")
+            let aparecerPorQue2 = true
+            function aparecerPQ2(){
+                if(aparecerPorQue2 == true){
+                    CaixabtnA2.classList.remove("hide")
+                    aparecerPorQue2 = false
+                }else{
+                    CaixabtnA2.classList.add("hide")
+                    aparecerPorQue2 = true
                 }
             }
         </script>
