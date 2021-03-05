@@ -260,8 +260,12 @@
                     <li class="nav-item">
                         <a type="button" class="btn btn-outline-light mr-3" href="index.php">Página inicial</a>
                     </li>
-                    <?$arquivo_texto_contrato = file_get_contents("public/contrato.hd", "a");?>
-                    <?if($arquivo_texto_contrato != ''){ ?>
+                    <?
+                        $arquivo_texto_contrato = file_get_contents("public/contrato.hd", "a");
+                        $arquivo_texto_contrato = str_replace("
+", '', $arquivo_texto_contrato);
+                    ?>
+                    <?if($arquivo_texto_contrato != 'nada'){ ?>
                         <li class="nav-item">
                             <a href="Contrato.php" type="button" class="btn btn-outline-success"><i class="fas fa-check-circle fa-lg mr-1"></i><b>Contrato</b></a>
                         </li>
