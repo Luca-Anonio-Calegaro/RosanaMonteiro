@@ -11,6 +11,8 @@
 ?>
 <?php
     //construir o texto
+    $arquivo_contrato = fopen("contrato.hd", "w");
+    fclose($arquivo_contrato);
     $arquivo_contrato = fopen("contrato.hd", "a");
     fwrite($arquivo_contrato, "<h3>Neste contrato você afirmou:</h3><br/>
     <ul>
