@@ -270,7 +270,8 @@
                         <li class="nav-item">
                             <a href="Contrato.php" type="button" class="btn btn-outline-success"><i class="fas fa-check-circle fa-lg mr-1"></i><b>Contrato</b></a>
                         </li>
-                    <? } else {?>
+                    <? } ?>
+                    <? if($arquivo_texto_contrato === 'nada'){?>
                         <li class="nav-item">
                             <a href="contrato_de_responsabilidade_e_pagamento.php" type="button" class="btn btn-outline-danger"><i class="fas fa-exclamation-circle fa-lg mr-1"></i><b>Contrato</b></a>
                         </li>
